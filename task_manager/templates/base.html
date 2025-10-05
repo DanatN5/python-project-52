@@ -1,11 +1,21 @@
+
 <!DOCTYPE html>
+{% load django_bootstrap5 %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block bootstrap5_title %}Task manager{% endblock %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
-<body>
+<body class="min-vh-100 d-flex flex-column">
+    {% include 'nav.html' %}
+
+    {% block main %}{% endblock %}
+
+    {% include 'footer.html' %}
     
 </body>
 </html>

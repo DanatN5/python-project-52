@@ -5,6 +5,5 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
     def get(self, request):
-        context = {"name": "django_blog"}
 
-        return render(request, self.template_name, context)
+        return render(request, self.template_name)
