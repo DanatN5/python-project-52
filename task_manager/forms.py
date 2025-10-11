@@ -12,7 +12,7 @@ class LoginForm(AuthenticationForm):
         required=True)
     password = forms.CharField(
         label=("Password"),
-        min_length=3,
+        min_length=4,
         widget=forms.PasswordInput(attrs={
             'placeholder': ('Password'),
             'autocomplete': 'current-password'}),
