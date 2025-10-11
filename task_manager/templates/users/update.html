@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
  
 {% block main %}
     <h1>Update user {{ user.username }}:</h1>
     <form action="" method="post">
       {% csrf_token %}
       {% bootstrap_form form %}
-      <input type="submit" value="Delete"/>
+      <input type="submit" value="Accept"/>
       <a href="{% url 'user_list' %}" class="btn btn-secondary">Cancel</a>
     </form>
 {% endblock main %}
