@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<h2>Users</h2>
-
-<table class="table table-strriped">
+<div class="container wrapper flex-grow-1">
+  <h1 class="my-4">Users</h1>
+  <table class="table table-strriped">
     <thead>
         <tr>
             <th>ID</th>
@@ -26,5 +26,6 @@
         </tr>
         {% endfor %}
     </tbody>
-</table>
+  </table>
+</div>
 {% endblock %}

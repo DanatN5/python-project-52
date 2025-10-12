@@ -12,7 +12,11 @@
           <a class="nav-link active" aria-current="page" href="{% url 'user_list' %}">Users</a>
         </li>
         {% if user.is_authenticated %}
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Exit</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'status_list' %}">Statuses</a>
         </li>
         {% else %}
         <li class="nav-item">

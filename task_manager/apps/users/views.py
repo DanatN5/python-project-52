@@ -1,12 +1,10 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
-from task_manager.users.models import User
-from task_manager.users.forms import UserForm
+from task_manager.apps.users.models import User
+from task_manager.apps.users.forms import UserForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from task_manager.users.mixins import AuthorizationMixin
+from task_manager.apps.users.mixins import AuthorizationMixin
 
-# Create your views here.
 class UsersView(ListView):
     model = User
     context_object_name = 'users'

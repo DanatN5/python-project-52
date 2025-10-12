@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
-from task_manager.users.models import User
+from task_manager.apps.users.models import User
 
 
 class LoginForm(AuthenticationForm):

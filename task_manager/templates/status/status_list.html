@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container wrapper flex-grow-1">
+  <h1 class="my-4">Statuses</h1>
+  <a href="{% url 'create_status' %}" class="btn btn-primary">Create status</a>
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}}">{{message}}</div>
+  {% endfor %}
+  {% endif %}
+  <table class="table table-strriped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Created date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for statsus in statuses %}
+        <tr>
+            <td>{{ statsus.id }}</td>
+            <td>{{ statsus.name }}</td>
+            <td>{{ statsus.created_at|date:'d.m.Y H:i' }}</td>
+            <td>
+            <a href="{% url 'update_status' statsus.id %}">update</a>
+            <a href="{% url 'delete_status' statsus.id %}">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
