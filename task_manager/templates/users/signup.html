@@ -2,10 +2,12 @@
 {% load django_bootstrap5 %}
  
 {% block main %}
-    <h1>New user</h1>
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">Sign up</h1>
     <form action="" method="post">
       {% csrf_token %}
       {% bootstrap_form form %}
-      <input type="submit" value="Save" />
+      <input class="btn btn-primary" type="submit" value="Sign up" />
     </form>
+</div>
 {% endblock main %}

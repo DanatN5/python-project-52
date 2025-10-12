@@ -1,0 +1,24 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "D5527gf74DbD!@",
+    "username": "woojeong.kim",
+    "first_name": "Kim",
+    "last_name": "Woojeong",
+    "created_at": "2025-01-01"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "s57nH74nhD!@",
+    "username": "mark",
+    "first_name": "Mark",
+    "last_name": "Marked",
+    "created_at": "2025-01-01"
+  }
+}
+]
