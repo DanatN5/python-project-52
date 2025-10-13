@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from task_manager.apps.users.models import User
 
+
 class UsersTests(TestCase):
     fixtures = ['users.json']
 

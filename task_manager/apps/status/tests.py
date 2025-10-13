@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from task_manager.apps.status.models import Status
 
+
 class StatusTests(TestCase):
     fixtures = ['status.json']
 
@@ -17,7 +18,6 @@ class StatusTests(TestCase):
         status = Status.objects.last()
         self.assertEqual(status.name, 'Good')
  
-
     def test_update_status(self):
         response = self.client.post(reverse('update_status', args=[self.status.pk]), {
             "name": "Niceee",
