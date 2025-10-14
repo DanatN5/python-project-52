@@ -8,4 +8,4 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = [
-            'name', 'status', 'description', 'executor']
+            'name', 'status', 'description', 'executor', 'label']

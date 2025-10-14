@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 
 from task_manager.apps.status.models import Status
+from task_manager.apps.label.models import Label
 
 
 class Task(models.Model):
@@ -24,7 +25,11 @@ class Task(models.Model):
     status = models.ForeignKey(
         Status,
         on_delete=models.PROTECT,
-        related_name='tasks')
+        related_name='status')
+    
+    label = models.ManyToManyField(
+        Label,
+        related_name='task')
 
     def __str__(self):
         return self.name
