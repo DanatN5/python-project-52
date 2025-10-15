@@ -2,13 +2,17 @@ from django.test import TestCase
 from django.urls import reverse
 
 from task_manager.apps.status.models import Status
+from task_manager.apps.users.models import User
 
 
 class StatusTests(TestCase):
-    fixtures = ['status.json']
+    fixtures = ['status', 'users']
 
     def setUp(self):
         self.status = Status.objects.get(pk=2)
+
+        self.user = User.objects.get(pk=1)
+        self.client.force_login(self.user)
 
     def test_create_status(self):
         response = self.client.post(reverse('create_status'), {

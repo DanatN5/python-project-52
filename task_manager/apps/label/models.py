@@ -12,7 +12,6 @@ class Label(models.Model):
                                  self.task.all())
         super().delete(*args, **kwargs)
         
-
-
+        
     def __str__(self):
         return self.name
