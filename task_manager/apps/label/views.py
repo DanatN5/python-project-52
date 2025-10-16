@@ -38,7 +38,7 @@ class DeleteLabel(LoginRequiredMixin, DeleteView):
         try:
             self.object.delete()
             messages.success(request, f'Label {self.object.name} successfully deleted')
-            return super().delete(request, *args, **kwargs)
+            return redirect(self.success_url)
         except ProtectedError:
             messages.error(request, 'You cannot delete this label. The label is in use')
         return redirect(self.success_url)
