@@ -8,11 +8,18 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from task_manager.apps.task.forms import TaskForm
 from task_manager.apps.task.mixins import AuthorRequiredMixin
 from task_manager.apps.task.models import Task
+from django_filters.views import FilterView
+from task_manager.apps.task.filter import TaskFilter
 
 
-class TasksView(ListView):
+class TasksView(FilterView, ListView):
     model = Task
+    template_name = 'task/task_list.html'
     context_object_name = 'tasks'
+    filterset_class = TaskFilter
+
+    def get_filterset(self, filterset_class):
+        return filterset_class(self.request.GET, queryset=self.get_queryset(), request=self.request)
 
 
 class TaskView(DetailView):

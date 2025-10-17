@@ -12,6 +12,15 @@
   <h1 class="my-4">Tasks</h1>
     <a href="{% url 'create_task' %}" class="btn btn-primary">Create task</a>
 
+  <div class="card mb-3">
+    <div class="card-body bg-light">
+      <form class="form-inline center" method="get">
+        {% bootstrap_form filter.form %}
+        <input type="submit" class="btn btn-primary" value="Show">
+      </form>
+    </div>
+  </div>
+
   <table class="table table-strriped">
     <thead>
         <tr>
