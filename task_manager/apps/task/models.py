@@ -29,7 +29,7 @@ class Task(models.Model):
     
     label = models.ManyToManyField(
         Label,
-        related_name='task')
+        related_name='labels')
 
     def __str__(self):
         return self.name

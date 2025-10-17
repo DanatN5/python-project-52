@@ -7,9 +7,9 @@ class Label(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def delete(self, *args, **kwargs):
-        if self.task.exists():
+        if self.labels.exists():
             raise ProtectedError(f'Label {self.name} is in use. You cannot delete it',
-                                 self.task.all())
+                                 self.labels.all())
         super().delete(*args, **kwargs)
         
         
