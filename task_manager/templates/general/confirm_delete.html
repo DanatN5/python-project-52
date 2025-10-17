@@ -3,11 +3,12 @@
  
 {% block main %}
 <div class="container wrapper flex-grow-1">
-    <h1 class="my-4">Sign up</h1>
+    <h1 class="my-4">{{ title }} {{ object.name }}?</h1>
     <form action="" method="post">
       {% csrf_token %}
       {% bootstrap_form form %}
-      <input class="btn btn-primary" type="submit" value="Sign up" />
+      <input class="btn btn-primary" type="submit" value="Delete" />
+      <a href="{% url 'label_list' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 {% endblock main %}

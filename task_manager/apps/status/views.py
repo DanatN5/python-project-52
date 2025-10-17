@@ -15,23 +15,26 @@ class StatusesView(ListView):
 
 class CreateStatus(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Status
-    template_name = 'status/status_form.html'
+    template_name = 'general/general_form.html'
     fields = ['name']
     success_url = reverse_lazy('status_list')
     success_message = 'Status successfully created'
+    extra_context = {'title': 'Create status'}
 
 class UpdateStatus(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Status
-    template_name = 'status/status_form.html'
+    template_name = 'general/general_form.html'
     fields = ['name']
     success_url = reverse_lazy('status_list')
     success_message = 'Status successfully updated'
+    extra_context = {'title': 'Update status'}
 
 class DeleteStatus(LoginRequiredMixin, DeleteView):
     model = Status
-    template_name = 'status/confirm_delete.html'
-    context_object_name = 'status'
+    template_name = 'general/confirm_delete.html'
+    context_object_name = 'object'
     success_url = reverse_lazy('status_list')
+    extra_context = {'title': 'Delete status'}
     
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

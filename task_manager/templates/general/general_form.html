@@ -3,12 +3,11 @@
  
 {% block main %}
 <div class="container wrapper flex-grow-1">
-    <h1 class="my-4">Delete status {{ status.name }}?</h1>
+    <h1 class="my-4">{{ title }}</h1>
     <form action="" method="post">
       {% csrf_token %}
       {% bootstrap_form form %}
-      <input class="btn btn-primary" type="submit" value="Delete" />
-      <a href="{% url 'status_list' %}" class="btn btn-secondary">Cancel</a>
+      <input class="btn btn-primary" type="submit" value="Save" />
     </form>
 </div>
 {% endblock main %}

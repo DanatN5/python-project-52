@@ -15,23 +15,26 @@ class LabelView(ListView):
 
 class CreateLabel(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Label
-    template_name = 'label/label_form.html'
+    template_name = 'general/general_form.html'
     fields = ['name']
     success_url = reverse_lazy('label_list')
     success_message = 'Label successfully created'
+    extra_context = {'title': 'Create label'}
 
 class UpdateLabel(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
-    template_name = 'label/status_form.html'
+    template_name = 'general/general_form.html'
     fields = ['name']
     success_url = reverse_lazy('label_list')
     success_message = 'Label successfully updated'
+    extra_context = {'title': 'Update label'}
 
 class DeleteLabel(LoginRequiredMixin, DeleteView):
     model = Label
-    template_name = 'label/confirm_delete.html'
+    template_name = 'general/confirm_delete.html'
     context_object_name = 'label'
     success_url = reverse_lazy('label_list')
+    extra_context = {'title': 'Delete label'}
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

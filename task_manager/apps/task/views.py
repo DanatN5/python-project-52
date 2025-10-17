@@ -24,8 +24,9 @@ class TaskView(DetailView):
 class CreateTask(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskForm
-    template_name = 'task/task_form.html'
+    template_name = 'general/general_form.html'
     success_url = reverse_lazy('task_list')
+    extra_context = {'title': 'Create task'}
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -37,8 +38,9 @@ class CreateTask(LoginRequiredMixin, CreateView):
 class UpdateTask(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
-    template_name = 'task/task_form.html'
+    template_name = 'general/general_form.html'
     success_url = reverse_lazy('task_list')
+    extra_context = {'title': 'Update task'}
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -49,6 +51,8 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
 
 class DeleteTask(AuthorRequiredMixin, LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Task
-    template_name = 'task/confirm_delete.html'
+    template_name = 'general/confirm_delete.html'
     success_url = reverse_lazy('task_list')
     success_message = 'Task successfully deleted'
+    extra_context = {'title': 'Delete task'}
+    context_object_name = 'object'
