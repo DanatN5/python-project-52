@@ -10,6 +10,9 @@ build:
 render-start:
 	gunicorn task_manager.wsgi
 
+collectstatic:
+	python manage.py collectstatic --no-input
+
 test:
 	uv run manage.py test
 
