@@ -7,7 +7,7 @@ from task_manager.forms import LoginForm
 
 
 class IndexView(TemplateView):
-    template_name = "indexx.html"
+    template_name = "index.html"
 
     def get(self, request):
 
