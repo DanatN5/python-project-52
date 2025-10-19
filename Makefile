@@ -1,6 +1,9 @@
 venv:
 	uv venv
 
+install:
+	uv sync
+
 runserver:
 	uv run manage.py runserver
 
