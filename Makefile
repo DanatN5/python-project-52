@@ -13,5 +13,15 @@ render-start:
 test:
 	uv run manage.py test
 
-lint:
+check:
 	uv run ruff check
+
+check-fix:
+	uv run ruff check --fix .
+
+
+migrations:
+	python manage.py makemigrations
+
+migrate:
+	python manage.py migrate
