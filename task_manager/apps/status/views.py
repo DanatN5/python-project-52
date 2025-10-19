@@ -2,18 +2,18 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from task_manager.apps.status.models import Status
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from task_manager.mixins import AuthenticationMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.db.models import ProtectedError
 
 
-class StatusesView(ListView):
+class StatusesView(AuthenticationMixin, ListView):
     model = Status
     context_object_name = 'statuses'
 
-class CreateStatus(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class CreateStatus(AuthenticationMixin, SuccessMessageMixin, CreateView):
     model = Status
     template_name = 'general/general_form.html'
     fields = ['name']
@@ -21,7 +21,7 @@ class CreateStatus(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = 'Status successfully created'
     extra_context = {'title': 'Create status'}
 
-class UpdateStatus(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class UpdateStatus(AuthenticationMixin, SuccessMessageMixin, UpdateView):
     model = Status
     template_name = 'general/general_form.html'
     fields = ['name']
@@ -29,7 +29,7 @@ class UpdateStatus(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = 'Status successfully updated'
     extra_context = {'title': 'Update status'}
 
-class DeleteStatus(LoginRequiredMixin, DeleteView):
+class DeleteStatus(AuthenticationMixin, DeleteView):
     model = Status
     template_name = 'general/confirm_delete.html'
     context_object_name = 'object'

@@ -7,9 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.shortcuts import redirect
+from task_manager.mixins import AuthenticationMixin
 
 
-class LabelView(ListView):
+class LabelView(LoginRequiredMixin, ListView):
     model = Label
     context_object_name = 'labels'
 

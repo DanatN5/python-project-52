@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from task_manager.apps.users.forms import UserForm
-from task_manager.apps.users.mixins import AuthorizationMixin
+from task_manager.mixins import AuthorizationMixin
 from task_manager.apps.users.models import User
 
 

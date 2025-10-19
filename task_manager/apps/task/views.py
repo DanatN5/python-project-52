@@ -1,18 +1,17 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from task_manager.apps.task.forms import TaskForm
-from task_manager.apps.task.mixins import AuthorRequiredMixin
+from task_manager.mixins import AuthorRequiredMixin, AuthenticationMixin
 from task_manager.apps.task.models import Task
 from django_filters.views import FilterView
 from task_manager.apps.task.filter import TaskFilter
 
 
-class TasksView(FilterView, ListView):
+class TasksView(FilterView, AuthenticationMixin, ListView):
     model = Task
     template_name = 'task/task_list.html'
     context_object_name = 'tasks'
@@ -22,13 +21,13 @@ class TasksView(FilterView, ListView):
         return filterset_class(self.request.GET, queryset=self.get_queryset(), request=self.request)
 
 
-class TaskView(DetailView):
+class TaskView(AuthenticationMixin, DetailView):
     model = Task
     template_name = 'task/task.html'
     context_object_name = 'task'
 
 
-class CreateTask(LoginRequiredMixin, CreateView):
+class CreateTask(AuthenticationMixin, CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'general/general_form.html'
@@ -42,7 +41,7 @@ class CreateTask(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateTask(LoginRequiredMixin, UpdateView):
+class UpdateTask(AuthenticationMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name = 'general/general_form.html'
@@ -56,7 +55,7 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class DeleteTask(AuthorRequiredMixin, LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class DeleteTask(AuthorRequiredMixin, AuthenticationMixin, SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'general/confirm_delete.html'
     success_url = reverse_lazy('task_list')

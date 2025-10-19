@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class="container wrapper flex-grow-1">
-  {% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-{{message.tags}}">{{message}}</div>
-  {% endfor %}
-  {% endif %}
-
-  <h1 class="my-4">Statuses</h1>
+<h1 class="my-4">Statuses</h1>
   <a href="{% url 'create_label' %}" class="btn btn-primary">Create label</a>
 
   <table class="table table-strriped">
@@ -33,5 +26,5 @@
         {% endfor %}
     </tbody>
   </table>
-</div>
+
 {% endblock %}
