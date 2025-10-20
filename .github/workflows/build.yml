@@ -19,6 +19,8 @@ jobs:
         run: |
           make check
       - name: Run Tests
+        env:
+          SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         run: |
           make test
       
