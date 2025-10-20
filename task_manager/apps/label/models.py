@@ -8,10 +8,10 @@ class Label(models.Model):
 
     def delete(self, *args, **kwargs):
         if self.labels.exists():
-            raise ProtectedError(f'Label {self.name} is in use. You cannot delete it',
-                                 self.labels.all())
+            raise ProtectedError(
+                f'Label {self.name} is in use. You cannot delete it',
+                self.labels.all())
         super().delete(*args, **kwargs)
-        
         
     def __str__(self):
         return self.name

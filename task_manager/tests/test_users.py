@@ -26,7 +26,8 @@ class UsersTests(TestCase):
         self.assertEqual(user.username, 'LordFarquad')
 
     def test_update_view(self):
-        response = self.client.post(reverse('update_user', args=[self.user.pk]), {
+        response = self.client.post(
+            reverse('update_user', args=[self.user.pk]), {
             "first_name": self.user.first_name,
             "last_name": "Arthur",
             'username': 'King',
@@ -38,7 +39,8 @@ class UsersTests(TestCase):
         self.assertEqual(self.user.last_name, 'Arthur')
 
     def test_delete_view(self):
-        response = self.client.post(reverse('delete_user', args=[self.user.pk]))
+        response = self.client.post(
+            reverse('delete_user', args=[self.user.pk]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(User.objects.filter(pk=self.user.pk).exists())
 

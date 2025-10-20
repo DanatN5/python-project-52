@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.db import models
 
-from task_manager.apps.status.models import Status
 from task_manager.apps.label.models import Label
+from task_manager.apps.status.models import Status
 
 
 class Task(models.Model):

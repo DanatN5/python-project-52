@@ -1,10 +1,10 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from task_manager.apps.label.models import Label
+from task_manager.apps.status.models import Status
 from task_manager.apps.task.models import Task
 from task_manager.apps.users.models import User
-from task_manager.apps.status.models import Status
-from task_manager.apps.label.models import Label
 
 
 class FilterTests(TestCase):
@@ -15,10 +15,9 @@ class FilterTests(TestCase):
         self.client.force_login(self.user)
 
     def test_access(self):
-        logout = self.client.post(reverse('logout'))
+        self.client.post(reverse('logout'))
         response = self.client.get(reverse('task_list'))
         self.assertEqual(response.status_code, 302)
-
 
     def test_filter_by_status(self):
         status = Status.objects.get(pk=1)

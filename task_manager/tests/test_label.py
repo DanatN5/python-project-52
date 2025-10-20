@@ -23,7 +23,8 @@ class LabelTests(TestCase):
         self.assertEqual(label.name, 'Good')
  
     def test_update_label(self):
-        response = self.client.post(reverse('update_label', args=[self.label.pk]), {
+        response = self.client.post(
+            reverse('update_label', args=[self.label.pk]), {
             "name": "Label5",
         })
         self.assertEqual(response.status_code, 302)
@@ -31,6 +32,7 @@ class LabelTests(TestCase):
         self.assertEqual(self.label.name, 'Label5')
 
     def test_delete_label(self):
-        response = self.client.post(reverse('delete_label', args=[self.label.pk]))
+        response = self.client.post(
+            reverse('delete_label', args=[self.label.pk]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Label.objects.filter(pk=self.label.pk).exists())

@@ -23,7 +23,8 @@ class StatusTests(TestCase):
         self.assertEqual(status.name, 'Good')
  
     def test_update_status(self):
-        response = self.client.post(reverse('update_status', args=[self.status.pk]), {
+        response = self.client.post(
+            reverse('update_status', args=[self.status.pk]), {
             "name": "Niceee",
         })
         self.assertEqual(response.status_code, 302)
@@ -31,6 +32,7 @@ class StatusTests(TestCase):
         self.assertEqual(self.status.name, 'Niceee')
 
     def test_delete_status(self):
-        response = self.client.post(reverse('delete_status', args=[self.status.pk]))
+        response = self.client.post(
+            reverse('delete_status', args=[self.status.pk]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Status.objects.filter(pk=self.status.pk).exists())

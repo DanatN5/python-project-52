@@ -3,12 +3,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-
-from task_manager.apps.task.forms import TaskForm
-from task_manager.mixins import AuthorRequiredMixin, AuthenticationMixin
-from task_manager.apps.task.models import Task
 from django_filters.views import FilterView
+
 from task_manager.apps.task.filter import TaskFilter
+from task_manager.apps.task.forms import TaskForm
+from task_manager.apps.task.models import Task
+from task_manager.mixins import AuthenticationMixin, AuthorRequiredMixin
 
 
 class TasksView(FilterView, AuthenticationMixin, ListView):
@@ -18,7 +18,9 @@ class TasksView(FilterView, AuthenticationMixin, ListView):
     filterset_class = TaskFilter
 
     def get_filterset(self, filterset_class):
-        return filterset_class(self.request.GET, queryset=self.get_queryset(), request=self.request)
+        return filterset_class(self.request.GET,
+                               queryset=self.get_queryset(),
+                               request=self.request)
 
 
 class TaskView(AuthenticationMixin, DetailView):
@@ -55,7 +57,8 @@ class UpdateTask(AuthenticationMixin, UpdateView):
         return super().form_valid(form)
 
 
-class DeleteTask(AuthorRequiredMixin, AuthenticationMixin, SuccessMessageMixin, DeleteView):
+class DeleteTask(AuthorRequiredMixin, AuthenticationMixin,
+                 SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'general/confirm_delete.html'
     success_url = reverse_lazy('task_list')

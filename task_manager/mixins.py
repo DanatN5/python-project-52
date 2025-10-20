@@ -1,7 +1,6 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
-from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 
 
@@ -16,14 +15,17 @@ class AuthenticationMixin(LoginRequiredMixin):
         return super(
             LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
 
+
 class AuthorizationMixin(LoginRequiredMixin):
     def dispatch(self, request, *args, **kweargs):
         obj = self.get_object()
         if obj != request.user:
-            messages.error(self.request, 'You cannot change other user profiles')
+            messages.error(self.request,
+                           'You cannot change other user profiles')
             return redirect(reverse_lazy('user_list'))
         return super().dispatch(request, *args, **kweargs)
     
+
 class AuthorRequiredMixin(UserPassesTestMixin):
     def test_func(self):
         task = self.get_object()

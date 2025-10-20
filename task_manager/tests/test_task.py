@@ -38,7 +38,8 @@ class LabelTests(TestCase):
         self.assertTrue(Task.objects.filter(name='New task').exists())
 
     def test_task_update(self):
-        response = self.client.post(reverse('update_task', args=[self.task.id]), {
+        response = self.client.post(
+            reverse('update_task', args=[self.task.id]), {
             'name': 'Updated task',
             'description': 'Updated description',
             'status': self.task.status.id,
