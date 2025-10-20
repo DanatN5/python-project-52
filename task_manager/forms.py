@@ -6,16 +6,16 @@ from task_manager.apps.users.models import User
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
-        label=("Username"),
+        label=("Имя пользователя"),
         max_length=150,
         widget=forms.TextInput(attrs={
-            'placeholder': ('Username')}),
+            'placeholder': ('Имя пользователя')}),
         required=True)
     password = forms.CharField(
-        label=("Password"),
+        label=("Пароль"),
         min_length=4,
         widget=forms.PasswordInput(attrs={
-            'placeholder': ('Password'),
+            'placeholder': ('Пароль'),
             'autocomplete': 'current-password'}),
         required=True)
 

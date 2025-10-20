@@ -34,12 +34,13 @@ class CreateTask(AuthenticationMixin, CreateView):
     form_class = TaskForm
     template_name = 'general/general_form.html'
     success_url = reverse_lazy('task_list')
-    extra_context = {'title': 'Create task'}
+    extra_context = {'title': 'Создать задачу',
+                     'button': 'Создать'}
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         messages.success(self.request,
-                         f'Task "{form.instance.name}" successfelly created!')
+                         f'Задача "{form.instance.name}" успешно создана')
         return super().form_valid(form)
 
 
@@ -48,12 +49,13 @@ class UpdateTask(AuthenticationMixin, UpdateView):
     form_class = TaskForm
     template_name = 'general/general_form.html'
     success_url = reverse_lazy('task_list')
-    extra_context = {'title': 'Update task'}
+    extra_context = {'title': 'Изменение задачи',
+                     'button': 'Изменить'}
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         messages.success(self.request,
-                         f'Task "{form.instance.name}" successfelly updated!')
+                         f'Задача "{form.instance.name}" успешно изменена!')
         return super().form_valid(form)
 
 
@@ -62,6 +64,7 @@ class DeleteTask(AuthorRequiredMixin, AuthenticationMixin,
     model = Task
     template_name = 'general/confirm_delete.html'
     success_url = reverse_lazy('task_list')
-    success_message = 'Task successfully deleted'
-    extra_context = {'title': 'Delete task'}
+    success_message = 'Задача успешно удалена'
+    extra_context = {'title': 'Удаление задачи',
+                     'button': 'Да, удалить'}
     context_object_name = 'object'

@@ -1,36 +1,37 @@
 {% load django_bootstrap5 %}
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand-md navbar-light bg-light ms-3">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Task manager</a>
+    <a class="navbar-brand" href="/">Менеджер задач</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#task_manager" aria-controls="task_manager" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="task_manager">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'user_list' %}">Users</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'user_list' %}">Пользователи</a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'status_list' %}">Statuses</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'status_list' %}">Статусы</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'task_list' %}">Tasks</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'task_list' %}">Задачи</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'label_list' %}">Labels</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'label_list' %}">Метки</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Exit</a>
+          <a class="nav-link" href="{% url 'logout' %}">Выход</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'sign_up_user' %}">Sign up</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Вход</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Sign in</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'sign_up_user' %}">Регистрация</a>
         </li>
+        
         {% endif %}
       </ul>
     </div>

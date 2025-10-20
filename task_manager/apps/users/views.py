@@ -17,7 +17,10 @@ class SignUpUser(CreateView):
     form_class = UserForm
     template_name = 'general/general_form.html'
     success_url = reverse_lazy('login')
-    extra_context = {'title': 'Sign up'}
+    extra_context = {
+        'title': 'Регистрация',
+        'button': 'Зарегистрировать',
+        }
 
 
 class UpdateUser(AuthorizationMixin, UpdateView):
@@ -26,7 +29,10 @@ class UpdateUser(AuthorizationMixin, UpdateView):
     template_name = 'general/general_form.html'
     context_object_name = 'user'
     success_url = reverse_lazy('user_list')
-    extra_context = {'title': 'Update user'}
+    extra_context = {
+        'title': 'Изменение пользователя',
+        'button': 'Изменить',
+        }
 
 
 class DeleteUser(AuthorizationMixin, DeleteView):
@@ -34,4 +40,8 @@ class DeleteUser(AuthorizationMixin, DeleteView):
     template_name = 'general/confirm_delete.html'
     context_object_name = 'object'
     success_url = reverse_lazy('user_list')
-    extra_context = {'title': 'Delete user'}
+    extra_context = {
+        'title': 'Удаление пользователя',
+        'button': 'Да, удалить',
+        }
+    

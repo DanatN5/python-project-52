@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<h1 class="my-4">Statuses</h1>
-  <a href="{% url 'create_status' %}" class="btn btn-primary">Create status</a>
+<h1 class="my-4">Статусы</h1>
+  <a href="{% url 'create_status' %}" class="btn btn-primary">Создать статус</a>
 
-  <table class="table table-strriped">
+  <table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Created date</th>
+            <th>Имя</th>
+            <th>Дата создания</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -19,8 +20,9 @@
             <td>{{ statsus.name }}</td>
             <td>{{ statsus.created_at|date:'d.m.Y H:i' }}</td>
             <td>
-            <a href="{% url 'update_status' statsus.id %}">update</a>
-            <a href="{% url 'delete_status' statsus.id %}">delete</a>
+            <a href="{% url 'update_status' statsus.id %}">Изменить</a>
+            <br>
+            <a href="{% url 'delete_status' statsus.id %}">Удалить</a>
             </td>
         </tr>
         {% endfor %}

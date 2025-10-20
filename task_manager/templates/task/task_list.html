@@ -2,27 +2,29 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-<h1 class="my-4">Tasks</h1>
-    <a href="{% url 'create_task' %}" class="btn btn-primary">Create task</a>
+<h1 class="my-4">Задачи</h1>
+    <a href="{% url 'create_task' %}" class="btn btn-primary mb-3">Создать задачу</a>
 
   <div class="card mb-3">
     <div class="card-body bg-light">
       <form class="form-inline center" method="get">
         {% bootstrap_form filter.form %}
-        <input type="submit" class="btn btn-primary" value="Show">
+        <input type="submit" class="btn btn-primary" value="Показать">
+        <a href="{% url 'task_list' %}" class="mx-2">Сбросить фильтры</a>
       </form>
     </div>
   </div>
 
-  <table class="table table-strriped">
+  <table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Author</th>
-            <th>Executor</th>
-            <th>Created date</th>
+            <th>Имя</th>
+            <th>Статус</th>
+            <th>Автор</th>
+            <th>Исполнитель</th>
+            <th>Дата создания</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -35,8 +37,9 @@
             <td>{{ task.executor }}</td>
             <td>{{ task.created_at|date:'d.m.Y H:i' }}</td>
             <td>
-            <a href="{% url 'update_task' task.id %}">update</a>
-            <a href="{% url 'delete_task' task.id %}">delete</a>
+            <a href="{% url 'update_task' task.id %}">Изменить</a>
+            <br>
+            <a href="{% url 'delete_task' task.id %}">Удалить</a>
             </td>
         </tr>
         {% endfor %}

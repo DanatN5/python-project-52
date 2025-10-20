@@ -2,7 +2,7 @@
 {% load django_bootstrap5 %}
  
 {% block main %}
-<h1 class="my-4">Task</h1>
+<h1 class="my-4">Просмотр задачи</h1>
     <div class="card">
         <div class="card-header bg-secondary text-white">
             <h2>{{ task.name }}</h2>
@@ -12,31 +12,31 @@
             <hr>
             <div class="container">
                 <div class="row p-1">
-                    <div class="col">Author</div>
+                    <div class="col">Автор</div>
                     <div class="col">{{ task.author }}</div>
                 </div>
                 <div class="row p-1">
-                    <div class="col">Executor</div>
+                    <div class="col">Исполнитель</div>
                     <div class="col">{{ task.executor }}</div>
                 </div>
                 <div class="row p-1">
-                    <div class="col">Status</div>
+                    <div class="col">Статус</div>
                     <div class="col">{{ task.status }}</div>
                 </div>
                 <div class="row p-1">
-                    <div class="col">Created at</div>
-                    <div class="col">{{ task.created_at }}</div>
+                    <div class="col">Дата создания</div>
+                    <div class="col">{{ task.created_at|date:'d.m.Y H:i' }}</div>
                 </div>
                 <div class="row p-1">
                     <div class="col">
-                        <h6>Labels:</h6>
+                        <h6>Метки:</h6>
                         <ul>
                             {% if task.label.exists %}
                                 {% for label in task.label.all %}
                                 <li>{{ label.name }}</li>
                                 {% endfor %}
                             {% else %}
-                                <li>No labels</li>
+                                <li>Нет меток</li>
                             {% endif %}
                         </ul>
                     </div>
@@ -44,9 +44,9 @@
 
                 <div class="row p-1">
                     <div class="col">
-                        <a href="{% url 'update_task' task.id %}">Update</a>
+                        <a href="{% url 'update_task' task.id %}">Изменить</a>
                         <br>
-                        <a href="{% url 'delete_task' task.id %}">Delete</a>
+                        <a href="{% url 'delete_task' task.id %}">Удалить</a>
                     </div>
                 
                 </div>
