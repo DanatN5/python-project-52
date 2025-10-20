@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
 
 from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
@@ -86,22 +87,18 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
-else:
-    import dj_database_url
-    DATABASES = {
-        'default': dj_database_url.parse(
-            os.getenv("DATABASE_URL"),
-            conn_max_age=600
-        )
-    }
+DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.{}'.format(
+              os.getenv('DATABASE_ENGINE', 'sqlite3')
+          ),
+          'NAME': os.getenv('DATABASE_NAME', 'postgres'),
+          'USER': os.getenv('DATABASE_USERNAME', 'postgres'),
+          'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'password'),
+          'HOST': os.getenv('DATABASE_HOST', '127.0.0.1'),
+          'PORT': os.getenv('DATABASE_PORT', '5432'),
+      }
+  }
     
 
 # Password validation
