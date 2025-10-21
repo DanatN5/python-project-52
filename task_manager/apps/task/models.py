@@ -13,23 +13,27 @@ class Task(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
-        related_name='author')
+        related_name='author',
+        verbose_name='Автор')
     
     executor = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         null=True,
         blank=True,
-        related_name='executor')
+        related_name='executor',
+        verbose_name='Исполнитель')
     
     status = models.ForeignKey(
         Status,
         on_delete=models.PROTECT,
-        related_name='status')
+        related_name='status',
+        verbose_name='Статус')
     
     label = models.ManyToManyField(
         Label,
-        related_name='labels')
+        related_name='labels',
+        verbose_name='Метки')
 
     def __str__(self):
         return self.name
