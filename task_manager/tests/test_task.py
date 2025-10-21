@@ -6,7 +6,7 @@ from task_manager.apps.users.models import User
 
 
 class LabelTests(TestCase):
-    fixtures = ['task', 'users', 'labels', 'status']
+    fixtures = ['task', 'users', 'label', 'status']
 
     def setUp(self):
         self.task = Task.objects.get(pk=1)

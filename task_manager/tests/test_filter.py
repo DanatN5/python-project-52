@@ -36,7 +36,7 @@ class FilterTests(TestCase):
         task_expected = Task.objects.get(pk=2)
         task_unexpected = Task.objects.get(pk=1)
         response = self.client.get(reverse('task_list'), {
-            'label': label.id,
+            'labels': label.id,
         })
         self.assertEqual(response.status_code, 200)
         tasks = list(response.context['tasks'])
@@ -63,7 +63,7 @@ class FilterTests(TestCase):
         task_unexpected = Task.objects.get(pk=3)
         response = self.client.get(reverse('task_list'), {
             'executor': executor.id,
-            'label': label.id,
+            'labels': label.id,
             'status': status.id,
         })
         self.assertEqual(response.status_code, 200)
