@@ -11,10 +11,10 @@ build:
 	./build.sh
 
 render-start:
-	gunicorn task_manager.wsgi
+	uv run gunicorn task_manager.wsgi
 
 collectstatic:
-	python manage.py collectstatic --noinput
+	uv run manage.py collectstatic --noinput
 
 test:
 	uv run manage.py test
@@ -27,7 +27,7 @@ check-fix:
 
 
 migrations:
-	python manage.py makemigrations
+	uv run python manage.py makemigrations
 
 migrate:
-	python manage.py migrate
+	uv run python manage.py migrate
