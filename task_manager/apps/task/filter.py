@@ -10,24 +10,24 @@ from task_manager.apps.users.models import User
 class TaskFilter(django_filters.FilterSet):
     status = django_filters.ModelChoiceFilter(
         queryset=Status.objects.all(),
-        label="Status",
+        label="Статус",
         empty_label="-----",
     )
 
     executor = django_filters.ModelChoiceFilter(
         queryset=User.objects.all(),
-        label="Executor",
+        label="Исполнитель",
         empty_label="-----",
     )
 
     label = django_filters.ModelChoiceFilter(
         queryset=Label.objects.all(),
-        label="Labels",
+        label="Метка",
         empty_label="-----",
     )
 
     self_tasks = django_filters.BooleanFilter(
-        label="Show my tasks only",
+        label="Только свои задачи",
         method="filter_self_tasks",
         widget=forms.CheckboxInput,
     )
