@@ -1,7 +1,10 @@
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.contrib.messages.views import SuccessMessageMixin
 
 from task_manager.apps.users.forms import UserForm
 from task_manager.apps.users.models import User
@@ -48,4 +51,15 @@ class DeleteUser(SuccessMessageMixin, AuthorizationMixin, DeleteView):
         'title': 'Удаление пользователя',
         'button': 'Да, удалить',
         }
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(
+                request,
+                ('Невозможно удалить пользователя, потому что он используется')
+            )
+            return redirect(self.success_url)
+
     
