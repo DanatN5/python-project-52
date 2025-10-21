@@ -2,10 +2,7 @@ venv:
 	uv venv
 
 install:
-	pip install uv
-	pip install gunicorn uvicorn
-	uv venv
-	uv pip install -r requirements.txt
+	uv sync
 
 runserver:
 	uv run manage.py runserver
