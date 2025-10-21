@@ -9,7 +9,7 @@
     "author": 1,
     "executor": 1,
     "status": 3,
-    "label": [
+    "labels": [
       1
     ]
   }
@@ -24,7 +24,7 @@
     "author": 2,
     "executor": 1,
     "status": 2,
-    "label": []
+    "labels": []
   }
 },
 {
@@ -37,7 +37,7 @@
     "author": 1,
     "executor": 2,
     "status": 3,
-    "label": [
+    "labels": [
       2,
       3
     ]
@@ -53,7 +53,7 @@
     "author": 1,
     "executor": 2,
     "status": 1,
-    "label": [
+    "labels": [
       2,
       3
     ]

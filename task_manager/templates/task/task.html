@@ -31,8 +31,8 @@
                     <div class="col">
                         <h6>Метки:</h6>
                         <ul>
-                            {% if task.label.exists %}
-                                {% for label in task.label.all %}
+                            {% if task.labels.exists %}
+                                {% for label in task.labels.all %}
                                 <li>{{ label.name }}</li>
                                 {% endfor %}
                             {% else %}

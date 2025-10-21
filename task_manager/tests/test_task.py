@@ -6,7 +6,7 @@ from task_manager.apps.users.models import User
 
 
 class LabelTests(TestCase):
-    fixtures = ['task', 'users', 'label', 'status']
+    fixtures = ['task', 'users', 'labels', 'status']
 
     def setUp(self):
         self.task = Task.objects.get(pk=1)
@@ -32,7 +32,7 @@ class LabelTests(TestCase):
             'description': 'New description',
             'status': self.task.status.id,
             'executor': self.task.executor.id,
-            'label': [2, 3],
+            'labels': [2, 3],
         })
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Task.objects.filter(name='New task').exists())
@@ -44,7 +44,7 @@ class LabelTests(TestCase):
             'description': 'Updated description',
             'status': self.task.status.id,
             'executor': self.task.executor.id,
-            'label': [2],
+            'labels': [2],
         })
         self.assertEqual(response.status_code, 302)
         self.task.refresh_from_db()
