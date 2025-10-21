@@ -9,7 +9,7 @@ class AuthenticationMixin(LoginRequiredMixin):
         if not request.user.is_authenticated:
             messages.error(
                 request,
-                messages.error(self.request, ("Вы не залогинены"))
+                messages.error(self.request, ("Вы не залогинены."))
             )
             return redirect(reverse_lazy("login"))
         return super(
@@ -21,8 +21,10 @@ class AuthorizationMixin(UserPassesTestMixin):
         return self.get_object() == self.request.user
     
     def handle_no_permission(self):
-        messages.error(self.request,
-                           'У вас не прав для изменения другого пользователя')
+        messages.error(
+            self.request,
+            ('У вас нет прав для изменения другого пользователя.')
+            )
         return redirect(reverse_lazy('user_list'))
     
 
@@ -32,5 +34,5 @@ class AuthorRequiredMixin(UserPassesTestMixin):
         return task.author == self.request.user
     
     def handle_no_permission(self):
-        messages.error(self.request, 'Задачу может удалить только ее автор')
+        messages.error(self.request, 'Задачу может удалить только ее автор.')
         return redirect(reverse_lazy('task_list'))
