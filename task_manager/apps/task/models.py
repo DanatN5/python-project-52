@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.auth import get_user_model
 
 from task_manager.apps.label.models import Label
 from task_manager.apps.status.models import Status
 
+User = get_user_model()
 
 class Task(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -11,13 +13,13 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.PROTECT,
         related_name='author',
         verbose_name='Автор')
     
     executor = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.PROTECT,
         null=True,
         blank=True,
