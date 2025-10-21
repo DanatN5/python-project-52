@@ -1,11 +1,11 @@
-from django.conf import settings
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 from task_manager.apps.label.models import Label
 from task_manager.apps.status.models import Status
 
 User = get_user_model()
+
 
 class Task(models.Model):
     name = models.CharField(max_length=100, unique=True)
