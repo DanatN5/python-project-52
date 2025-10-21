@@ -7,14 +7,14 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'status', 'executor', 'label']
+        fields = ['name', 'description', 'status', 'executor', 'labels']
         widgets = {
-            'label': forms.SelectMultiple(attrs={'class': 'form-control'})
+            'labels': forms.SelectMultiple(attrs={'class': 'form-control'})
         }
         labels = {
             'name': 'Имя',
             'status': 'Статус',
             'description': 'Описание',
             'executor': 'Исполнитель',
-            'label': 'Метки',
+            'labels': 'Метки',
         }

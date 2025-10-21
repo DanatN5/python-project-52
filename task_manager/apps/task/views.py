@@ -54,7 +54,6 @@ class UpdateTask(AuthenticationMixin, SuccessMessageMixin, UpdateView):
     success_message = 'Задача успешно изменена'
   
 
-
 class DeleteTask(AuthorRequiredMixin, AuthenticationMixin,
                  SuccessMessageMixin, DeleteView):
     model = Task
