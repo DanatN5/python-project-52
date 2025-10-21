@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
 
 from task_manager.apps.users.forms import UserForm
 from task_manager.apps.users.models import User
@@ -12,7 +13,7 @@ class UsersView(ListView):
     context_object_name = 'users'
 
 
-class SignUpUser(CreateView):
+class SignUpUser(SuccessMessageMixin, CreateView):
     model = User
     form_class = UserForm
     template_name = 'general/general_form.html'
@@ -21,25 +22,28 @@ class SignUpUser(CreateView):
         'title': 'Регистрация',
         'button': 'Зарегистрировать',
         }
+    success_message = 'Пользователь успешно зарегистрирован'
 
 
-class UpdateUser(AuthorizationMixin, UpdateView):
+class UpdateUser(SuccessMessageMixin, AuthorizationMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'general/general_form.html'
     context_object_name = 'user'
     success_url = reverse_lazy('user_list')
+    success_message = 'Пользователь успешно изменен'
     extra_context = {
         'title': 'Изменение пользователя',
         'button': 'Изменить',
         }
 
 
-class DeleteUser(AuthorizationMixin, DeleteView):
+class DeleteUser(SuccessMessageMixin, AuthorizationMixin, DeleteView):
     model = User
     template_name = 'general/confirm_delete.html'
     context_object_name = 'object'
     success_url = reverse_lazy('user_list')
+    success_message = 'Пользователь успешно удален'
     extra_context = {
         'title': 'Удаление пользователя',
         'button': 'Да, удалить',

@@ -40,7 +40,7 @@ class CreateTask(AuthenticationMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         messages.success(self.request,
-                         f'Задача "{form.instance.name}" успешно создана')
+                         f'Задача успешно создана')
         return super().form_valid(form)
 
 
@@ -55,7 +55,7 @@ class UpdateTask(AuthenticationMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         messages.success(self.request,
-                         f'Задача "{form.instance.name}" успешно изменена!')
+                         f'Задача успешно изменена')
         return super().form_valid(form)
 
 

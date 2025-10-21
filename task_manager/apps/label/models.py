@@ -9,7 +9,7 @@ class Label(models.Model):
     def delete(self, *args, **kwargs):
         if self.labels.exists():
             raise ProtectedError(
-                f'Метка {self.name} используется',
+                f'Метка используется',
                 self.labels.all())
         super().delete(*args, **kwargs)
         

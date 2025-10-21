@@ -49,7 +49,7 @@ class DeleteStatus(AuthenticationMixin, DeleteView):
         try:
             self.object.delete()
             messages.success(self.request,
-                             f'Статус {self.object.name} успешно удален')
+                             f'Статус успешно удален')
             return redirect(self.success_url)
         except ProtectedError:
             messages.error(self.request,

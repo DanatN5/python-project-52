@@ -49,7 +49,7 @@ class DeleteLabel(AuthenticationMixin, DeleteView):
         try:
             self.object.delete()
             messages.success(request,
-                             f'Метка "{self.object.name}" успешно удалена')
+                             f'Метка успешно удалена')
             return redirect(self.success_url)
         except ProtectedError:
             messages.error(request,
