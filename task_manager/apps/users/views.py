@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from task_manager.apps.users.forms import UserForm
 from task_manager.apps.users.models import User
-from task_manager.mixins import AuthorizationMixin
+from task_manager.mixins import AuthenticationMixin, AuthorizationMixin
 
 
 class UsersView(ListView):
@@ -28,7 +28,8 @@ class SignUpUser(SuccessMessageMixin, CreateView):
     success_message = 'Пользователь успешно зарегистрирован'
 
 
-class UpdateUser(SuccessMessageMixin, AuthorizationMixin, UpdateView):
+class UpdateUser(SuccessMessageMixin, AuthenticationMixin,
+                 AuthorizationMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'general/general_form.html'
@@ -41,7 +42,8 @@ class UpdateUser(SuccessMessageMixin, AuthorizationMixin, UpdateView):
         }
 
 
-class DeleteUser(SuccessMessageMixin, AuthorizationMixin, DeleteView):
+class DeleteUser(SuccessMessageMixin, AuthenticationMixin,
+                 AuthorizationMixin, DeleteView):
     model = User
     template_name = 'general/confirm_delete.html'
     context_object_name = 'object'

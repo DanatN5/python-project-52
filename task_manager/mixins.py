@@ -16,14 +16,14 @@ class AuthenticationMixin(LoginRequiredMixin):
             LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 
-class AuthorizationMixin(LoginRequiredMixin):
-    def dispatch(self, request, *args, **kweargs):
-        obj = self.get_object()
-        if obj != request.user:
-            messages.error(self.request,
+class AuthorizationMixin(UserPassesTestMixin):    
+    def test_func(self):
+        return self.get_object() == self.request.user
+    
+    def handle_no_permission(self):
+        messages.error(self.request,
                            'У вас не прав для изменения другого пользователя')
-            return redirect(reverse_lazy('user_list'))
-        return super().dispatch(request, *args, **kweargs)
+        return redirect(reverse_lazy('user_list'))
     
 
 class AuthorRequiredMixin(UserPassesTestMixin):

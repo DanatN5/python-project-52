@@ -8,7 +8,6 @@
       {% csrf_token %}
       {% bootstrap_form form %}
       <input class="btn btn-danger" type="submit" value="{{ button }}" />
-      <a href="{% url 'label_list' %}" class="btn btn-secondary">Отмена</a>
     </form>
 
 {% endblock main %}
