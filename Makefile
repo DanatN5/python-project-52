@@ -25,7 +25,6 @@ check:
 check-fix:
 	uv run ruff check --fix .
 
-
 migrations:
 	uv run python manage.py makemigrations
 
