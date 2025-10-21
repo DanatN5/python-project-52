@@ -44,19 +44,15 @@ class CreateTask(AuthenticationMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateTask(AuthenticationMixin, UpdateView):
+class UpdateTask(AuthenticationMixin, SuccessMessageMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name = 'general/general_form.html'
     success_url = reverse_lazy('task_list')
     extra_context = {'title': 'Изменение задачи',
                      'button': 'Изменить'}
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        messages.success(self.request,
-                         'Задача успешно изменена')
-        return super().form_valid(form)
+    success_message = 'Задача успешно изменена'
+  
 
 
 class DeleteTask(AuthorRequiredMixin, AuthenticationMixin,
