@@ -87,18 +87,21 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-      'default': {
-          'ENGINE': 'django.db.backends.{}'.format(
-              os.getenv('DATABASE_ENGINE', 'sqlite3')
-          ),
-          'NAME': os.getenv('DATABASE_NAME', 'postgres'),
-          'USER': os.getenv('DATABASE_USERNAME', 'postgres'),
-          'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'password'),
-          'HOST': os.getenv('DATABASE_HOST', '127.0.0.1'),
-          'PORT': os.getenv('DATABASE_PORT', '5432'),
-      }
-  }
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(
+            os.getenv("DATABASE_URL"),
+            conn_max_age=600
+        )
+    }
     
 
 # Password validation
