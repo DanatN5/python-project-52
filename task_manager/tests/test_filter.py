@@ -1,9 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from task_manager.apps.label.models import Label
-from task_manager.apps.status.models import Status
-from task_manager.apps.task.models import Task
+from task_manager.apps.labels.models import Label
+from task_manager.apps.statuses.models import Status
+from task_manager.apps.tasks.models import Task
 from task_manager.apps.users.models import User
 
 

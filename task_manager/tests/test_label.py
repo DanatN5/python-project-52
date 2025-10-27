@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from task_manager.apps.label.models import Label
+from task_manager.apps.labels.models import Label
 from task_manager.apps.users.models import User
 
 
