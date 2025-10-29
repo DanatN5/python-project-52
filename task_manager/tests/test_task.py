@@ -1,3 +1,4 @@
+import pytest
 from django.test import TestCase
 from django.urls import reverse
 
@@ -5,6 +6,7 @@ from task_manager.apps.tasks.models import Task
 from task_manager.apps.users.models import User
 
 
+@pytest.mark.django_db
 class LabelTests(TestCase):
     fixtures = ['task', 'users', 'label', 'status']
 

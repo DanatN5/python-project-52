@@ -7,7 +7,7 @@
     "username": "woojeong.kim",
     "first_name": "Kim",
     "last_name": "Woojeong",
-    "created_at": "2025-01-01"
+    "created_at": "2025-01-01 00:00:00+00:00"
   }
 },
 {
@@ -18,7 +18,7 @@
     "username": "mark",
     "first_name": "Mark",
     "last_name": "Marked",
-    "created_at": "2025-01-01"
+    "created_at": "2025-01-01 00:00:00+00:00"
   }
 }
 ]
