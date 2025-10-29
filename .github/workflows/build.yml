@@ -5,6 +5,10 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+        SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        DEBUG: True
+        
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -19,9 +23,6 @@ jobs:
         run: |
           make check
       - name: Run Tests
-        env:
-          SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-          DEBUG: True
         run: |
           make test
       - name: Run test coverage
