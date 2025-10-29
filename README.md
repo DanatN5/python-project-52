@@ -21,24 +21,26 @@
 ``` 
 git clone git@github.com:DanatN5/python-project-52.git
 ```
+### Перейти в репозиторий проекта
 ````
 cd python-project-52
 ````
 
 ### Сконфигурируйте файл .env с со следущими переменными:
-
+`````
 SECRET_KEY
 DEBUG
 DATABASE_URL
 ALLOWED_HOSTS
 ROLLBAR_TOKEN
+`````
 
 ## Установка зависимостей и создание таблиц в базе данных
 `````
 make build
 ``````
 
-# Запуск приложения
+## Запуск приложения
 ````````
-make start
+make render-start
 ````````
