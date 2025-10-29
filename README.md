@@ -3,7 +3,7 @@
 
 [![Python CI](https://github.com/DanatN5/python-project-52/actions/workflows/build.yml/badge.svg)](https://github.com/DanatN5/python-project-52/actions/workflows/build.yml)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DanatN5_python-project-52&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DanatN5_python-project-52)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DanatN5_python-project-52&metric=coverage)](https://sonarcloud.io/summary/new_code?id=DanatN5_python-project-52)
 
 
 
